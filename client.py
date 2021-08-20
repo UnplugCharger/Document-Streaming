@@ -5,17 +5,26 @@ import json
 import requests 
 
 ## starting Id and ending Id 
-df=pd.read_csv("output/data.csv",nrows=5)
+df=pd.read_csv("output/data.csv",nrows=200)
 
 start=1
-end = 4  #len(df)
+end = len(df)
 i=start
 
 while i <= end :
 
     line =linecache.getline('output/output.txt',i)
 
-    print(line)
+    myjson=json.loads(line)
+
+    print(myjson)
+
+    # Use this for dedbugging
+    #print("Status code: ", response.status_code)
+    #print("Printing Entire Post Request")
+    #print(response.json())
+
+
 ## Increase i
     i=i+1
 
