@@ -9,3 +9,7 @@ df['json']=df.to_json(orient='records',lines=True).splitlines()
 df=df['json']
 
 print(df)
+# print out the dataframe to a file
+# Note that the timestamp forward slash will be escaped to stay true to JSON schema
+
+np.savetxt(r'output/output.txt',df.values,fmt='%s')
