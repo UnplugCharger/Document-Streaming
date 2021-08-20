@@ -3,7 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=virtualenv,python,jupyternotebooks,flask
 
 ## datasets
-data.csv
+output/*
 
 ### Flask ###
 instance/*
