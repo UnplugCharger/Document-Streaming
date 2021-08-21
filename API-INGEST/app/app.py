@@ -1,5 +1,6 @@
 ## working with fastapi statuses and  handling HTTPExceptions 
 
+from sys import api_version
 from fastapi import FastAPI ,status, HTTPException
 import uvicorn
 import json
@@ -80,63 +81,16 @@ async def post_invoice_item(item:InvoiceItem):# the body awaits invoice item inf
 
 def produce_kafka_string(json_as_string):
     ## producer 
-    producer = KafkaProducer(bootstrap_server='kafka:9092',acks=1)
+    producer = KafkaProducer(bootstrap_server='kafka:9092',acks=1,api_version=(2,8,0))
     ## encode string as bites as required by kafka
-    producer.send('ingestion-topic',bytes(json_as_string,'utf-8'))
+    producer.send('ingestion-topic',bytes(json_as_string,'utf-8'),)
     producer.flush()
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__=='__main__':
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="localhost", port=8000)
 
 
