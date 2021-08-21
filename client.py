@@ -19,6 +19,8 @@ while i <= end :
 
     print(myjson)
 
+    response = requests.post("http://0.0.0.0:8000/invoiceitem",json= myjson)
+
     # Use this for dedbugging
     #print("Status code: ", response.status_code)
     #print("Printing Entire Post Request")
