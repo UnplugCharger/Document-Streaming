@@ -18,7 +18,7 @@ from kafka import KafkaProducer , producer
 ## create a class {schema } for the json that will be coming in 
 class InvoiceItem(BaseModel):
     InvoiceNo: int
-    StockCode: str
+    StockCode: int
     Description: str
     Quantity: int
     InvoiceDate: str
@@ -64,7 +64,7 @@ async def post_invoice_item(item:InvoiceItem):# the body awaits invoice item inf
         ## dump json out as a string 
         json_as_string= json.dumps(json_of_item)
 
-        #produce_kafka_string(json_as_string)
+        produce_kafka_string(json_as_string)
 
 
         print(json_as_string)
@@ -81,7 +81,7 @@ async def post_invoice_item(item:InvoiceItem):# the body awaits invoice item inf
 
 def produce_kafka_string(json_as_string):
     ## producer 
-    producer = KafkaProducer(bootstrap_server='kafka:9092',acks=1,api_version=(2,8,0))
+    producer = KafkaProducer(bootstrap_server='kafka:9092',acks=1)
     ## encode string as bites as required by kafka
     producer.send('ingestion-topic',bytes(json_as_string,'utf-8'),)
     producer.flush()

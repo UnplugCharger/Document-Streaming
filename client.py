@@ -5,7 +5,7 @@ import json
 import requests 
 
 ## starting Id and ending Id 
-df=pd.read_csv("output/data.csv",nrows=200)
+df=pd.read_csv("output/data.csv",nrows=5)
 
 start=1
 end = len(df)
@@ -16,15 +16,14 @@ while i <= end :
     line =linecache.getline('output/output.txt',i)
 
     myjson=json.loads(line)
-
-    print(myjson)
+    print(line)
 
     response = requests.post("http://localhost:8000/invoiceitem",json= myjson)
 
     # Use this for dedbugging
     #print("Status code: ", response.status_code)
     #print("Printing Entire Post Request")
-    #print(response.json())
+    print(response.json())
 
 
 ## Increase i
